@@ -1,5 +1,8 @@
 // script.js
 
+// Variable to track the number of times "No" is clicked
+let noClickCount = 0;
+
 // Function to handle button click events
 function selectOption(option) {
     // Check which option was clicked
@@ -9,15 +12,45 @@ function selectOption(option) {
             document.getElementById('question').style.display = 'none'; // Hide the question
             displayCatHeart(); // Display the cat-heart.gif
         });
-    } else if (option === 'no') {
-        // Change text on the "No" button to "You sure?"
-        document.getElementById('no-button').innerText = 'You sure?'; 
-        // Increase font size of "Yes" button
+    } 
+    else if (option === 'no') {
+        // Increment the noClickCount each time "No" is clicked
+        noClickCount++;
+        // Change text based on the number of times "No" was clicked
+        if (noClickCount === 1) {
+            document.getElementById('no-button').innerText = 'Ếch có chắc hăm?';
+        } else if (noClickCount === 2) {
+            document.getElementById('no-button').innerText = 'Tại sao lại hăm, đồng ý?';
+        } else if (noClickCount === 3) {
+            document.getElementById('no-button').innerText = 'Một ly hồng trà ngô gia, đồng ý đi!';
+        } else if (noClickCount === 4) {
+            document.getElementById('no-button').innerText = 'Giờ là nhiều ly hồng trà ngô gia luôn ấy, đồng ý đii !!!';
+        } else if (noClickCount === 5) {
+            document.getElementById('no-button').innerText = 'PLEASE POOKIE';
+        } else if (noClickCount === 6) {
+            document.getElementById('no-button').innerText = 'But :<<';
+        } else if (noClickCount === 7) {
+            document.getElementById('no-button').innerText = 'Chị nghẻo bây giờ';
+        } else if (noClickCount === 8) {
+            document.getElementById('no-button').innerText = 'Ngỏm thật đóa !!!';
+        } else if (noClickCount === 9) {
+            document.getElementById('no-button').innerText = 'Em đang nói chuyện với hồn ma gòi';
+        } else if (noClickCount === 10) {
+            document.getElementById('no-button').innerText = 'Ơ thui đồng ý đi mà';
+        } else if (noClickCount === 11) {
+            document.getElementById('no-button').innerText = 'Khóc bây giờ !!!';
+        } else if (noClickCount === 12) {
+            document.getElementById('no-button').innerText = 'Waeee';
+        } else if (noClickCount > 12) {
+            document.getElementById('no-button').innerText = 'NOOOOOO !!!!';
+        }
+        // Optionally, increase font size of "Yes" button
         var yesButton = document.getElementById('yes-button');
         var currentFontSize = window.getComputedStyle(yesButton).getPropertyValue('font-size');
-        var newSize = parseFloat(currentFontSize) * 2; // Increase font size by  * 2px
+        var newSize = parseFloat(currentFontSize) * 1.35; // Increase font size by 2x
         yesButton.style.fontSize = newSize + 'px';
-    } else {
+    } 
+    else {
         // If neither "Yes" nor "No" was clicked, show an alert message
         alert('Invalid option!');
     }

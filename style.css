@@ -20,8 +20,11 @@ body {
 }
 
 #question {
-    font-family: 'Sacramento', cursive; /* Apply Sacramento font to the question */
-    font-size: 52px; /* Set font size for the question */
+    font-family: 'Lobster', Sans-serif; /* New font */
+    font-size: 60px; /* Increase font size */
+    line-height: 1.5; /* Improve line height for better readability */
+    color: #ff4081; /* Change color for better contrast */
+    padding: 20px; /* Add some padding */
 }
 
 #options {
@@ -29,12 +32,19 @@ body {
 }
 
 button {
-    padding: 10px 20px; /* Set padding for buttons */
-    margin: 0 10px; /* Set margin around buttons */
-    font-size: 26px; /* Set font size for buttons */
-    font-family: 'Sacramento', cursive; /* Apply Sacramento font to the options */
-    background-color: #FB607F; /* Set button background color */
-    color: white; /* Set text color to white */
-    border: none; /* Remove button border */
-    cursor: pointer; /* Set cursor to pointer on hover */
+    padding: 12px 24px; /* Increase button padding */
+    margin: 10px; /* Space around buttons */
+    font-size: 20px; /* Increase font size */
+    font-family: 'Lobster', cursive; /* Use Lobster font */
+    background-color: #FF4081; /* More vibrant background */
+    color: white; /* White text */
+    border-radius: 25px; /* Round the edges */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth hover effects */
+}
+
+button:hover {
+    background-color: #FF80AB; /* Lighter pink on hover */
+    transform: scale(1.1); /* Slightly enlarge button */
 }
