@@ -9,7 +9,9 @@ function selectOption(option) {
     if (option === 'yes') {
         // Flash rainbow colors
         flashRainbowColors(function() {
-            document.getElementById('question').style.display = 'none'; // Hide the question
+            document.getElementById('question').style.display = "ẾCH LÀ CỦA MÈO RỒI"; // Hide the question
+            document.getElementById('yes-button').style.display = 'none'; // Hide the "Yes" button
+            document.getElementById('no-button').style.display = 'none'; // Hide the "No" button
             displayCatHeart(); // Display the cat-heart.gif
         });
     } 
@@ -47,7 +49,7 @@ function selectOption(option) {
         // Optionally, increase font size of "Yes" button
         var yesButton = document.getElementById('yes-button');
         var currentFontSize = window.getComputedStyle(yesButton).getPropertyValue('font-size');
-        var newSize = parseFloat(currentFontSize) * 1.35; // Increase font size by 2x
+        var newSize = parseFloat(currentFontSize) * 1.15; // Increase font size by 2x
         yesButton.style.fontSize = newSize + 'px';
     } 
     else {
