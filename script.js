@@ -10,8 +10,7 @@ function selectOption(option) {
         // Flash rainbow colors
         flashRainbowColors(function() {
             document.getElementById('question').innerText = 'ẾCH LÀ CỦA MÈO RỒI'; // Change the question text
-            document.getElementById('yes-button').style.display = 'none'; // Hide the "Yes" button
-            document.getElementById('no-button').style.display = 'none'; // Hide the "No" button
+            document.getElementById('yes-button').hidden = true; // Hide the "Yes" button
             displayCatHeart(); // Display the cat-heart.gif
         });
     } 
