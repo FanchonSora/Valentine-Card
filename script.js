@@ -44,7 +44,7 @@ function selectOption(option) {
         } else if (noClickCount === 12) {
             document.getElementById('no-button').innerText = 'Waeee';
         } else if (noClickCount > 12) {
-            document.getElementById('no-button').innerText = 'NOOOOOO !!!!';
+            document.getElementById('no-button').hidden = true;
         }
         // Optionally, increase font size of "Yes" button
         var yesButton = document.getElementById('yes-button');
