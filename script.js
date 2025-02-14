@@ -21,7 +21,6 @@ function selectOption(option, isAuto) {
       // Ẩn cả nút "Yes" và "No"
       document.getElementById('yes-button').hidden = true;
       document.getElementById('no-button').hidden = true;
-      document.getElementById(agreeMsg).hidden = true;
 
       // Hiển thị hình ảnh cat-heart.gif
       displayCatHeart();
