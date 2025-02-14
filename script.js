@@ -10,10 +10,10 @@ let autoSelectTimer = setTimeout(function() {
 // Hàm xử lý sự kiện khi click nút
 // Tham số thứ hai "isAuto" dùng để đánh dấu là lựa chọn tự động hay không
 function selectOption(option, isAuto) {
-  // Hủy timer nếu có click từ người dùng
-  clearTimeout(autoSelectTimer);
-
   if (option === 'yes') {
+    // Nếu người dùng chọn "yes", hủy timer tự động
+    clearTimeout(autoSelectTimer);
+
     flashRainbowColors(function() {
       // Thay đổi nội dung của phần tử có id "question"
       document.getElementById('question').innerText = 'ẾCH LÀ CỦA MÈO RỒI';
@@ -39,6 +39,12 @@ function selectOption(option, isAuto) {
       }, 20000);
     });
   } else if (option === 'no') {
+    // Sau mỗi lần nhấn "No", reset lại timer 30 giây
+    clearTimeout(autoSelectTimer);
+    autoSelectTimer = setTimeout(function() {
+      selectOption('yes', true);
+    }, 30000);
+
     noClickCount++;
     if (noClickCount === 1) {
       document.getElementById('no-button').innerText = 'Ếch có chắc hăm?';
