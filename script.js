@@ -1,114 +1,154 @@
-// script.js
-
-// Variable to track the number of times "No" is clicked
+// Biến đếm số lần nhấn "No"
 let noClickCount = 0;
 
-// Function to handle button click events
-function selectOption(option) {
-    // Check which option was clicked
-    if (option === 'yes') {
-        // Flash rainbow colors
-        flashRainbowColors(function() {
-            document.getElementById('question').innerText = 'ẾCH LÀ CỦA MÈO RỒI'; // Change the question text
-            document.getElementById('yes-button').hidden = true; // Hide the "Yes" button
-            displayCatHeart(); // Display the cat-heart.gif
-        });
-    } 
-    else if (option === 'no') {
-        // Increment the noClickCount each time "No" is clicked
-        noClickCount++;
-        // Change text based on the number of times "No" was clicked
-        if (noClickCount === 1) {
-            document.getElementById('no-button').innerText = 'Ếch có chắc hăm?';
-        } else if (noClickCount === 2) {
-            document.getElementById('no-button').innerText = 'Tại sao lại hăm, đồng ý?';
-        } else if (noClickCount === 3) {
-            document.getElementById('no-button').innerText = 'Một ly hồng trà ngô gia, đồng ý đi!';
-        } else if (noClickCount === 4) {
-            document.getElementById('no-button').innerText = 'Giờ là nhiều ly hồng trà ngô gia luôn ấy, đồng ý đii !!!';
-        } else if (noClickCount === 5) {
-            document.getElementById('no-button').innerText = 'PLEASE POOKIE';
-        } else if (noClickCount === 6) {
-            document.getElementById('no-button').innerText = 'But :<<';
-        } else if (noClickCount === 7) {
-            document.getElementById('no-button').innerText = 'Chị nghẻo bây giờ';
-        } else if (noClickCount === 8) {
-            document.getElementById('no-button').innerText = 'Ngỏm thật đóa !!!';
-        } else if (noClickCount === 9) {
-            document.getElementById('no-button').innerText = 'Em đang nói chuyện với hồn ma gòi';
-        } else if (noClickCount === 10) {
-            document.getElementById('no-button').innerText = 'Ơ thui đồng ý đi mà';
-        } else if (noClickCount === 11) {
-            document.getElementById('no-button').innerText = 'Khóc bây giờ !!!';
-        } else if (noClickCount === 12) {
-            document.getElementById('no-button').innerText = 'Waeee';
-        } else if (noClickCount > 12) {
-            document.getElementById('no-button').hidden = true;
-        }
-        // Optionally, increase font size of "Yes" button
-        var yesButton = document.getElementById('yes-button');
-        var currentFontSize = window.getComputedStyle(yesButton).getPropertyValue('font-size');
-        var newSize = parseFloat(currentFontSize) * 1.2; // Increase font size by 2x
-        yesButton.style.fontSize = newSize + 'px';
-    } 
-    else {
-        // If neither "Yes" nor "No" was clicked, show an alert message
-        alert('Invalid option!');
+// Timer tự động chọn "yes" sau 30 giây nếu không có tương tác
+let autoSelectTimer = setTimeout(function() {
+  // Tự động chọn "yes"
+  selectOption('yes', true);
+}, 30000);
+
+// Hàm xử lý sự kiện khi click nút
+// Tham số thứ hai "isAuto" dùng để đánh dấu là lựa chọn tự động hay không
+function selectOption(option, isAuto) {
+  // Hủy timer nếu có click từ người dùng
+  clearTimeout(autoSelectTimer);
+
+  if (option === 'yes') {
+    flashRainbowColors(function() {
+      // Thay đổi nội dung của phần tử có id "question"
+      document.getElementById('question').innerText = 'ẾCH LÀ CỦA MÈO RỒI';
+
+      // Ẩn cả nút "Yes" và "No"
+      document.getElementById('yes-button').hidden = true;
+      document.getElementById('no-button').hidden = true;
+
+      // Hiển thị hình ảnh cat-heart.gif
+      displayCatHeart();
+
+      // Nếu lựa chọn được kích hoạt tự động, hiển thị thông điệp “Đồng ý” bên dưới hình ảnh
+      if (isAuto) {
+        displaySilentAgree();
+      }
+
+      // Kích hoạt hiệu ứng pháo hoa
+      launchFireworks();
+
+      // Sau 20 giây, thay đổi nội dung câu hỏi thành "Hehe"
+      setTimeout(function() {
+        document.getElementById('question').innerText = 'Hehe';
+      }, 20000);
+    });
+  } else if (option === 'no') {
+    noClickCount++;
+    if (noClickCount === 1) {
+      document.getElementById('no-button').innerText = 'Ếch có chắc hăm?';
+    } else if (noClickCount === 2) {
+      document.getElementById('no-button').innerText = 'Tại sao lại hăm, đồng ý?';
+    } else if (noClickCount === 3) {
+      document.getElementById('no-button').innerText = 'Một ly hồng trà ngô gia, đồng ý đi!';
+    } else if (noClickCount === 4) {
+      document.getElementById('no-button').innerText = 'Giờ là nhiều ly hồng trà ngô gia luôn ấy, đồng ý đii !!!';
+    } else if (noClickCount === 5) {
+      document.getElementById('no-button').innerText = 'PLEASE POOKIE';
+    } else if (noClickCount === 6) {
+      document.getElementById('no-button').innerText = 'But :<<';
+    } else if (noClickCount === 7) {
+      document.getElementById('no-button').innerText = 'Chị nghẻo bây giờ';
+    } else if (noClickCount === 8) {
+      document.getElementById('no-button').innerText = 'Ngỏm thật đóa !!!';
+    } else if (noClickCount === 9) {
+      document.getElementById('no-button').innerText = 'Em đang nói chuyện với hồn ma gòi';
+    } else if (noClickCount === 10) {
+      document.getElementById('no-button').innerText = 'Ơ thui đồng ý đi mà';
+    } else if (noClickCount === 11) {
+      document.getElementById('no-button').innerText = 'Khóc bây giờ !!!';
+    } else if (noClickCount === 12) {
+      document.getElementById('no-button').innerText = 'Waeee';
+    } else if (noClickCount > 12) {
+      document.getElementById('no-button').hidden = true;
     }
+    // Tăng kích thước font của nút "Yes" mỗi lần nhấn "No"
+    var yesButton = document.getElementById('yes-button');
+    var currentFontSize = window.getComputedStyle(yesButton).getPropertyValue('font-size');
+    var newSize = parseFloat(currentFontSize) * 1.2;
+    yesButton.style.fontSize = newSize + 'px';
+  } else {
+    alert('Invalid option!');
+  }
 }
 
-// Function to flash rainbow colors and then execute a callback function
+// Hàm flash đổi màu nền kiểu cầu vồng và gọi callback khi hoàn tất
 function flashRainbowColors(callback) {
-    var colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#9400d3'];
-    var i = 0;
-    var interval = setInterval(function() {
-        document.body.style.backgroundColor = colors[i];
-        i = (i + 1) % colors.length;
-    }, 200); // Change color every 200 milliseconds
-    setTimeout(function() {
-        clearInterval(interval);
-        document.body.style.backgroundColor = ''; // Reset background color
-        if (callback) {
-            callback();
-        }
-    }, 2000); // Flash colors for 2 seconds
+  var colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#9400d3'];
+  var i = 0;
+  var interval = setInterval(function() {
+    document.body.style.backgroundColor = colors[i];
+    i = (i + 1) % colors.length;
+  }, 200);
+
+  setTimeout(function() {
+    clearInterval(interval);
+    document.body.style.backgroundColor = '';
+    if (callback) {
+      callback();
+    }
+  }, 2000);
 }
 
-// Function to display the cat.gif initially
+// Hiển thị hình ảnh cat.gif ban đầu
 function displayCat() {
-    // Get the container where the image will be displayed
-    var imageContainer = document.getElementById('image-container');
-    // Create a new Image element for the cat
-    var catImage = new Image();
-    // Set the source (file path) for the cat image
-    catImage.src = 'cat.gif'; // Assuming the cat image is named "cat.gif"
-    // Set alternative text for the image (for accessibility)
-    catImage.alt = 'Cat';
-    // When the cat image is fully loaded, add it to the image container
-    catImage.onload = function() {
-        imageContainer.appendChild(catImage);
-    };
+  var imageContainer = document.getElementById('image-container');
+  var catImage = new Image();
+  catImage.src = 'cat.gif'; // Đảm bảo file cat.gif có sẵn
+  catImage.alt = 'Cat';
+  catImage.onload = function() {
+    imageContainer.appendChild(catImage);
+  };
 }
 
-// Function to display the cat-heart.gif
+// Hiển thị hình ảnh cat-heart.gif
 function displayCatHeart() {
-    // Clear existing content in the image container
-    document.getElementById('image-container').innerHTML = '';
-    // Get the container where the image will be displayed
-    var imageContainer = document.getElementById('image-container');
-    // Create a new Image element for the cat-heart
-    var catHeartImage = new Image();
-    // Set the source (file path) for the cat-heart image
-    catHeartImage.src = 'cat-heart.gif'; // Assuming the cat-heart image is named "cat-heart.gif"
-    // Set alternative text for the image (for accessibility)
-    catHeartImage.alt = 'Cat Heart';
-    // When the cat-heart image is fully loaded, add it to the image container
-    catHeartImage.onload = function() {
-        imageContainer.appendChild(catHeartImage);
-        // Hide the options container
-        document.getElementById('options').style.display = 'none';
-    };
+  document.getElementById('image-container').innerHTML = '';
+  var imageContainer = document.getElementById('image-container');
+  var catHeartImage = new Image();
+  catHeartImage.src = 'cat-heart.gif'; // Đảm bảo file cat-heart.gif có sẵn
+  catHeartImage.alt = 'Cat Heart';
+  catHeartImage.onload = function() {
+    imageContainer.appendChild(catHeartImage);
+    // Ẩn container chứa nút lựa chọn
+    document.getElementById('options').style.display = 'none';
+  };
 }
 
-// Display the cat.gif initially
+// Hiển thị thông điệp "Đồng ý" bên dưới hình ảnh
+function displaySilentAgree() {
+  var agreeMsg = document.createElement('div');
+  agreeMsg.innerText = 'Đồng ý';
+  agreeMsg.style.fontSize = '24px';
+  agreeMsg.style.color = '#4CAF50';
+  agreeMsg.style.marginTop = '10px';
+  document.getElementById('image-container').appendChild(agreeMsg);
+}
+
+// Kích hoạt hiệu ứng pháo hoa
+function launchFireworks() {
+  var fireworksContainer = document.createElement('div');
+  fireworksContainer.id = 'fireworks-container';
+  document.body.appendChild(fireworksContainer);
+
+  for (var i = 0; i < 20; i++) {
+    var firework = document.createElement('div');
+    firework.className = 'firework';
+    firework.style.left = Math.random() * 100 + '%';
+    firework.style.top = Math.random() * 100 + '%';
+    fireworksContainer.appendChild(firework);
+  }
+
+  // Xóa hiệu ứng sau 5 giây
+  setTimeout(function() {
+    fireworksContainer.remove();
+  }, 5000);
+}
+
+// Hiển thị cat.gif ban đầu
 displayCat();

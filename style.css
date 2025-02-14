@@ -1,50 +1,82 @@
-/* style.css */
-
+/* Các style cơ bản */
 body {
-    font-family: Arial, sans-serif; /* Fallback font family */
-    text-align: center; /* Center-align text */
-    margin: 0; /* Remove default margin */
-    background-color: #FADADD; /* Set background color to light pink */
-}
-
-#container {
-    display: flex; /* Use flexbox layout */
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center-align items horizontally */
-    justify-content: center; /* Center-align items vertically */
-    height: 100vh; /* Make the container full viewport height */
-}
-
-#image-container {
-    /* This container will hold the images */
-}
-
-#question {
-    font-family: 'Lobster', Sans-serif; /* New font */
-    font-size: 60px; /* Increase font size */
-    line-height: 1.5; /* Improve line height for better readability */
-    color: #ff4081; /* Change color for better contrast */
-    padding: 20px; /* Add some padding */
-}
-
-#options {
-    margin-top: 20px; /* Add space above the options */
-}
-
-button {
-    padding: 12px 24px; /* Increase button padding */
-    margin: 10px; /* Space around buttons */
-    font-size: 20px; /* Increase font size */
-    font-family: 'Lobster', cursive; /* Use Lobster font */
-    background-color: #FF4081; /* More vibrant background */
-    color: white; /* White text */
-    border-radius: 25px; /* Round the edges */
-    border: none; /* No border */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s, transform 0.3s; /* Smooth hover effects */
-}
-
-button:hover {
-    background-color: #FF80AB; /* Lighter pink on hover */
-    transform: scale(1.1); /* Slightly enlarge button */
-}
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    background-color: #FADADD;
+  }
+  
+  #container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  #image-container {
+    /* Container hiển thị hình ảnh */
+  }
+  
+  #question {
+    font-family: 'Lobster', sans-serif;
+    font-size: 60px;
+    line-height: 1.5;
+    color: #ff4081;
+    padding: 20px;
+  }
+  
+  #options {
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 20px;
+    font-family: 'Lobster', cursive;
+    background-color: #FF4081;
+    color: white;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  button:hover {
+    background-color: #FF80AB;
+    transform: scale(1.1);
+  }
+  
+  /* Hiệu ứng pháo hoa */
+  #fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+  }
+  
+  .firework {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #FF4081, transparent);
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+  }
+  
+  @keyframes explode {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+  
