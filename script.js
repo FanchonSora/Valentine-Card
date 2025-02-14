@@ -34,7 +34,7 @@ function selectOption(option, isAuto) {
       launchFireworks();
 
       // Sau 20 giây, thay vì thay đổi nội dung thành "Hehe", hiển thị một emoji bức thư màu hồng
-    setTimeout(function() {
+      setTimeout(function() {
         // Xoá nội dung hiện có của phần tử câu hỏi
         const questionDiv = document.getElementById('question');
         questionDiv.innerHTML = '';
@@ -64,12 +64,40 @@ function selectOption(option, isAuto) {
         paper.style.maxWidth = '80%';
         paper.style.fontSize = '20px';
         paper.style.color = '#ff4081'; // màu chữ hồng
+
+        // Tạo phần tử ếch emoji
+        const frog = document.createElement('div');
+        frog.innerText = '🐸'; // Emoji bức thư
+        frog.style.fontSize = '40px';
+        frog.style.cursor = 'pointer';
+        frog.style.marginTop = '20px';
+        paper.appendChild(frog);
+        frog.addEventListener('click', function() {
+            paper.remove();
+            questionDiv.innerHTML = '';
+            // Thêm ảnh khi click vào frog emoji
+            const catMemeImage = document.createElement('img');
+            catMemeImage.src = 'catimage.jpg'; // Đường dẫn ảnh của bạn
+            catMemeImage.alt = 'Cute cat';
+            catMemeImage.style.maxWidth = '80%';
+            catMemeImage.style.margin = '20px auto';
+            catMemeImage.style.display = 'block'; // Đảm bảo ảnh hiển thị ở giữa
+            document.getElementById('image-container').removeChild(document.getElementById('image-container').firstChild);
+            document.getElementById('image-container').appendChild(catMemeImage);
+            questionDiv.innerText = 'Đừng lo có mèo ở đây với em rồi';
+            
+        });
+
+        
         
         // Xoá nội dung hiện có và thêm "tờ giấy" vào div câu hỏi
         questionDiv.innerHTML = '';
         questionDiv.appendChild(paper);
         });
     }, 10000);  
+ 
+
+    
     });
     } else if (option === 'no') {
     // Sau mỗi lần nhấn "No", reset lại timer 30 giây
@@ -186,7 +214,7 @@ function launchFireworks() {
   // Xóa hiệu ứng sau 5 giây
   setTimeout(function() {
     fireworksContainer.remove();
-  }, 5000);
+  }, 10000);
 }
 
 // Hiển thị cat.gif ban đầu
