@@ -21,6 +21,7 @@ function selectOption(option, isAuto) {
       // Ẩn cả nút "Yes" và "No"
       document.getElementById('yes-button').hidden = true;
       document.getElementById('no-button').hidden = true;
+      document.getElementById(agreeMsg).hidden = true;
 
       // Hiển thị hình ảnh cat-heart.gif
       displayCatHeart();
@@ -69,14 +70,14 @@ function selectOption(option, isAuto) {
         questionDiv.innerHTML = '';
         questionDiv.appendChild(paper);
         });
-    }, 20000);  
+    }, 10000);  
     });
     } else if (option === 'no') {
     // Sau mỗi lần nhấn "No", reset lại timer 30 giây
     clearTimeout(autoSelectTimer);
     autoSelectTimer = setTimeout(function() {
       selectOption('yes', true);
-    }, 30000);
+    }, 20000);
 
     noClickCount++;
     if (noClickCount === 1) {
@@ -163,7 +164,7 @@ function displayCatHeart() {
 function displaySilentAgree() {
   var agreeMsg = document.createElement('div');
   agreeMsg.innerText = 'IM LẶNG LÀ ĐỒNG Ý';
-  agreeMsg.style.fontSize = '24px';
+  agreeMsg.style.fontSize = '40px';
   agreeMsg.style.color = '#ff4081';
   agreeMsg.style.marginTop = '10px';
   document.getElementById('image-container').appendChild(agreeMsg);
