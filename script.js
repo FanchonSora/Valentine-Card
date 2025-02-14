@@ -33,12 +33,45 @@ function selectOption(option, isAuto) {
       // Kích hoạt hiệu ứng pháo hoa
       launchFireworks();
 
-      // Sau 20 giây, thay đổi nội dung câu hỏi thành "Hehe"
-      setTimeout(function() {
-        document.getElementById('question').innerText = 'Hehe';
-      }, 20000);
+      // Sau 20 giây, thay vì thay đổi nội dung thành "Hehe", hiển thị một emoji bức thư màu hồng
+    setTimeout(function() {
+        // Xoá nội dung hiện có của phần tử câu hỏi
+        const questionDiv = document.getElementById('question');
+        questionDiv.innerHTML = '';
+    
+        // Tạo phần tử envelope emoji
+        const envelope = document.createElement('div');
+        envelope.innerText = '💌'; // Emoji bức thư
+        envelope.style.fontSize = '80px';
+        envelope.style.cursor = 'pointer';
+        envelope.style.marginTop = '20px';
+    
+        // Thêm emoji vào phần tử câu hỏi
+        questionDiv.appendChild(envelope);
+    
+        // Khi click vào emoji, hiển thị nội dung thư trong format tờ giấy với chữ màu hồng
+        envelope.addEventListener('click', function() {
+        // Tạo khung "tờ giấy"
+        const paper = document.createElement('div');
+        paper.innerText = "Nói thiệt thì mèo cũng không có hay viết thư vầy đâu nên chắc mèo viết sẽ lủng củng lắm, thông cảm :3 Nói thiệt mèo không nghĩ em sẽ đồng ý nhanh vậy đâu, tại tính mèo trước giờ ích kỉ lắm nên là mèo không quan tâm người ta sẽ nghĩ gì á :v Nên là mèo lúc đầu cũng chả biết nên làm gì để em thích mèo cả kiểu mèo không có thấy mèo có gì nổi trội á, mèo tưởng sẽ phải tốn rất là lâu để tán em á tại mèo chả biết mẹ gì về mấy cái tinh tế hay chiều người này nọ cả. Èoo cái mèo mới thử cái chiều em theo kiểu nếu mèo là em mèo sẽ muốn gì á nên lâu lâu mèo hay làm mấy cái khùm khùm không ai nghĩ tới !!! Nói thật thì mèo lâu lâu cũng sợ mèo làm gì đó khác người hay là mèo vô tâm làm cho em buồn á, trước giờ mèo làm nhiều người buồn lắm rồi nma mèo hiếm khi care lắm :<< nên là em mà buồn chắc mèo die mất. Mèo không muốn làm em buồn đâu, nói thật thì em làm mèo có nhiều suy nghĩ mới lắm tại trước giờ mèo chả bao giờ để í đến xung quanh đâu nên là lâu lâu mấy câu hạt nhài kiểu nó nhạt tới mức mà chị vui luôn á hay là cách em nhìn nhận thế giới xung quanh làm mèo vui lắm á, mèo yêu em vì những thứ đó nên là đừng thắc mắc vì saooo nữa nhá !!! Mèo cũng rất vui vì em đồng ý luôn á, em với mèo có thể mới trong giai đoạn đầu của yêu đương nên có thể chưa gặp trắc trở gì nhưng hi zọng em với mèo có thể duy trì tình yêu này nhóa. Nó không chỉ là việc giữ ngọn lửa tình cảm mà còn là chấp nhận về tính 6677 của nhau nên là hi zọng em sẽ chấp nhận các tính 66778899 của mèo nhá <3 Mèo yêu em nhiều lắm !!!";
+        
+        // Áp dụng style "tờ giấy"
+        paper.style.backgroundColor = '#fff';
+        paper.style.border = '2px solid #ff4081';
+        paper.style.borderRadius = '10px';
+        paper.style.padding = '20px';
+        paper.style.margin = '20px auto';
+        paper.style.maxWidth = '80%';
+        paper.style.fontSize = '20px';
+        paper.style.color = '#ff4081'; // màu chữ hồng
+        
+        // Xoá nội dung hiện có và thêm "tờ giấy" vào div câu hỏi
+        questionDiv.innerHTML = '';
+        questionDiv.appendChild(paper);
+        });
+    }, 20000);  
     });
-  } else if (option === 'no') {
+    } else if (option === 'no') {
     // Sau mỗi lần nhấn "No", reset lại timer 30 giây
     clearTimeout(autoSelectTimer);
     autoSelectTimer = setTimeout(function() {
@@ -129,9 +162,9 @@ function displayCatHeart() {
 // Hiển thị thông điệp "Đồng ý" bên dưới hình ảnh
 function displaySilentAgree() {
   var agreeMsg = document.createElement('div');
-  agreeMsg.innerText = 'Đồng ý';
+  agreeMsg.innerText = 'IM LẶNG LÀ ĐỒNG Ý';
   agreeMsg.style.fontSize = '24px';
-  agreeMsg.style.color = '#4CAF50';
+  agreeMsg.style.color = '#ff4081';
   agreeMsg.style.marginTop = '10px';
   document.getElementById('image-container').appendChild(agreeMsg);
 }
